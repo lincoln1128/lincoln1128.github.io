@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ke Lin's Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --bg-card: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #5a5a7a;
+      --accent: #b8860b;
+      --accent-light: #e8d5a3;
+      --accent-hover: #9a7209;
+      --border: #e8e6e1;
+      --nav-hover: #f0ede8;
+      --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      --radius: 12px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- noise texture overlay ---- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ---- container ---- */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- header / banner ---- */
+    .header {
+      padding-top: 60px;
+      padding-bottom: 0;
+      text-align: center;
+    }
+
+    .name-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .name-title .accent-dot {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    .header-contact {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .header-contact a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .header-contact a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* ---- navigation tabs ---- */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .nav-tab {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 12px 28px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-bottom: 2px solid transparent;
+      transition: all .25s ease;
+      border-radius: 8px 8px 0 0;
+      letter-spacing: 0.01em;
+    }
+    .nav-tab:hover {
+      color: var(--text);
+      background: var(--nav-hover);
+    }
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: transparent;
+    }
+
+    /* ---- tab content ---- */
+    .tab-content {
+      display: none;
+      padding: 40px 0 80px;
+      animation: fadeUp .4s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- section heading ---- */
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .section-heading::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 8px;
+    }
+
+    /* ---- bio card ---- */
+    .bio-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .bio-card p {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .bio-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---- timeline / entries ---- */
+    .timeline {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background .2s;
+      border-radius: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+    .timeline-item:hover {
+      background: rgba(184, 134, 11, 0.03);
+    }
+
+    .timeline-date {
+      min-width: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .timeline-body {
+      flex: 1;
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+    .timeline-body strong {
+      font-weight: 600;
+    }
+    .timeline-body .org {
+      color: var(--text-secondary);
+    }
+
+    /* ---- publication entries ---- */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pub-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .pub-item:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-1px);
+    }
+
+    .pub-title {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .pub-title a:hover {
+      color: var(--accent);
+    }
+
+    .pub-authors {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+    .pub-authors .highlight {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .pub-venue {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .pub-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      font-size: 0.82rem;
+    }
+    .pub-citations {
+      background: var(--accent-light);
+      color: #6b5208;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .pub-year {
+      color: var(--text-secondary);
+    }
+
+    /* ---- footer ---- */
+    .footer {
+      text-align: center;
+      padding: 32px 0 48px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ---- responsive ---- */
+    @media (max-width: 640px) {
+      .name-title {
+        font-size: 2.2rem;
+      }
+      .nav-tab {
+        padding: 10px 16px;
+        font-size: 0.88rem;
+      }
+      .timeline-item {
+        flex-direction: column;
+        gap: 4px;
+      }
+      .timeline-date {
+        min-width: auto;
+      }
+      .bio-card,
+      .pub-item {
+        padding: 16px;
+      }
+      .header {
+        padding-top: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name-title">Ke Lin<span class="accent-dot">.</span></h1>
+      <p class="subtitle">AI Researcher &amp; Engineer</p>
+      <p class="header-contact">
+        <a href="mailto:linke.jason@jd.com">linke.jason@jd.com</a>
+      </p>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="nav-tab active" role="tab" data-tab="home" aria-selected="true">Home</button>
+      <button class="nav-tab" role="tab" data-tab="publications" aria-selected="false">Publications</button>
+    </nav>
+
+    <!-- Home Tab -->
+    <section class="tab-content active" id="tab-home" role="tabpanel">
+      <div class="bio-card">
+        <p>
+          <strong>Ke Lin</strong> is currently an AI algorithm engineer at <strong>JD.com</strong>, working on multimodal AI, video understanding, and large language models. He received his M.S. from the <strong>State Key Laboratory of Intelligent Technologies</strong>, <strong>Tsinghua University</strong>, where he was advised by Prof. Shangkai Gao and Prof. Xiaorong Gao, working on brain-computer interfaces (BCI) and neural signal processing.
+        </p>
+        <p>
+          His research spans multimodal learning, video captioning, vision-language models, and brain-computer interfaces. He has published in top venues including <strong>AAAI</strong>, <strong>EMNLP</strong>, <strong>IEEE TIP</strong>, <strong>IEEE TNNLS</strong>, <strong>Journal of Neural Engineering</strong>, and <strong>CVPR</strong>. His work has received over <strong>500+ citations</strong> on Google Scholar.
+        </p>
+      </div>
+
+      <h2 class="section-heading">Education</h2>
+      <ul class="timeline">
+        <li class="timeline-item">
+          <span class="timeline-date">2012 – 2016</span>
+          <div class="timeline-body">
+            <strong>M.S. in Biomedical Engineering</strong><br>
+            <span class="org">Tsinghua University, Beijing</span><br>
+            Advisor: Prof. Shangkai Gao &amp; Prof. Xiaorong Gao<br>
+            Thesis: SSVEP-based brain-computer interface systems
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-date">2008 – 2012</span>
+          <div class="timeline-body">
+            <strong>B.E. in Biomedical Engineering</strong><br>
+            <span class="org">Tsinghua University, Beijing</span>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="section-heading">Experience</h2>
+      <ul class="timeline">
+        <li class="timeline-item">
+          <span class="timeline-date">2020 – Present</span>
+          <div class="timeline-body">
+            <strong>AI Algorithm Engineer</strong><br>
+            <span class="org">JD.com, Beijing</span><br>
+            Multimodal AI, video understanding, large language models
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-date">2019 – 2020</span>
+          <div class="timeline-body">
+            <strong>Research Intern</strong><br>
+            <span class="org">JD AI Research, Beijing</span><br>
+            Video captioning and multimodal learning
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-date">2016 – 2019</span>
+          <div class="timeline-body">
+            <strong>Algorithm Engineer</strong><br>
+            <span class="org">JD.com, Beijing</span><br>
+            Computer vision and deep learning
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Publications Tab -->
+    <section class="tab-content" id="tab-publications" role="tabpanel">
+      <p style="color:var(--text-secondary); margin-bottom:20px; font-size:0.92rem;">
+        Google Scholar profile: <a href="https://scholar.google.com/citations?user=8bQlmq4AAAAJ" target="_blank" style="color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">Ke Lin</a>
+      </p>
+
+      <ol class="pub-list">
+        <!-- 1 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:7PzlFSSx8tAC" target="_blank">Koala-36m: A large-scale video dataset improving consistency between fine-grained conditions and video content</a></div>
+          <div class="pub-authors">Q Wang, Y Shi, J Ou, R Chen, <span class="highlight">K Lin</span>, J Wang, B Jiang, H Yang, M Zheng, ...</div>
+          <div class="pub-venue">CVPR 2025</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 104</span><span class="pub-year">2025</span></div>
+        </li>
+        <!-- 2 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:2osOgNQ5qMEC" target="_blank">An online hybrid BCI system based on SSVEP and EMG</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, A Cinetto, Y Wang, X Chen, S Gao, X Gao</div>
+          <div class="pub-venue">Journal of Neural Engineering 13 (2), 026020</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 88</span><span class="pub-year">2016</span></div>
+        </li>
+        <!-- 3 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:LkGwnXOMwfcC" target="_blank">A semantics-assisted video captioning model trained with scheduled sampling</a></div>
+          <div class="pub-authors">H Chen, <span class="highlight">K Lin</span>, A Maye, J Li, X Hu</div>
+          <div class="pub-venue">Frontiers in Robotics and AI 7, 475767</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 68</span><span class="pub-year">2020</span></div>
+        </li>
+        <!-- 4 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:Wp0gIr-vW9MC" target="_blank">Mmchat: Multi-modal chat dataset on social media</a></div>
+          <div class="pub-authors">Y Zheng, G Chen, X Liu, J Sun, <span class="highlight">K Lin</span>, ...</div>
+          <div class="pub-venue">LREC 2022</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 48</span><span class="pub-year">2022</span></div>
+        </li>
+        <!-- 5 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:Y0pCki6q_DkC" target="_blank">A novel system of SSVEP-based human–robot coordination</a></div>
+          <div class="pub-authors">X Han, <span class="highlight">K Lin</span>, S Gao, X Gao</div>
+          <div class="pub-venue">Journal of Neural Engineering 16 (1), 016006</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 48</span><span class="pub-year">2019</span></div>
+        </li>
+        <!-- 6 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:9ZlFYXVOiuMC" target="_blank">Method, apparatus, device and medium for generating captioning information of multimedia data</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, Z Gan, Y Jiang</div>
+          <div class="pub-venue">US Patent US 2022/0014807 A1</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 33</span><span class="pub-year">2022</span></div>
+        </li>
+        <!-- 7 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:aqlVkmm33-oC" target="_blank">Augmented partial mutual learning with frame masking for video captioning</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, Z Gan, L Wang</div>
+          <div class="pub-venue">AAAI 2021</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 33</span><span class="pub-year">2021</span></div>
+        </li>
+        <!-- 8 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:u5HHmVD_uO8C" target="_blank">A Hybrid BCI speller based on the combination of EMG envelopes and SSVEP</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, X Chen, X Huang, Q Ding, X Gao</div>
+          <div class="pub-venue">Applied Informatics 2 (1), 1</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 33</span><span class="pub-year">2015</span></div>
+        </li>
+        <!-- 9 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:Tyk-4Ss8FVUC" target="_blank">Boosting the information transfer rate of an SSVEP-BCI system using maximal-phase-locking value and minimal-distance spatial filter banks</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, S Gao, X Gao</div>
+          <div class="pub-venue">Tsinghua Science and Technology 24 (3), 262-270</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 26</span><span class="pub-year">2019</span></div>
+        </li>
+        <!-- 10 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:d1gkVwhDpl0C" target="_blank">Network analysis of functional brain connectivity driven by gamma-band auditory steady-state response in auditory hallucinations</a></div>
+          <div class="pub-authors">J Ying, D Zhou, <span class="highlight">K Lin</span>, X Gao</div>
+          <div class="pub-venue">Journal of Medical and Biological Engineering 35 (1), 45-51</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 26</span><span class="pub-year">2015</span></div>
+        </li>
+        <!-- 11 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:qxL8FJ1GzNcC" target="_blank">Vocabulary-wide credit assignment for training image captioning models</a></div>
+          <div class="pub-authors">H Liu, S Zhang, <span class="highlight">K Lin</span>, J Wen, J Li, X Hu</div>
+          <div class="pub-venue">IEEE Transactions on Image Processing 30, 2450-2460</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 21</span><span class="pub-year">2021</span></div>
+        </li>
+        <!-- 12 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:zYLM7Y9cAGgC" target="_blank">A novel algorithm for learning sparse spatio-spectral patterns for event-related potentials</a></div>
+          <div class="pub-authors">C Wu, <span class="highlight">K Lin</span>, W Wu, X Gao</div>
+          <div class="pub-venue">IEEE Transactions on Neural Networks and Learning Systems 28 (4), 862-872</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 20</span><span class="pub-year">2016</span></div>
+        </li>
+        <!-- 13 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:dhFuZR0502QC" target="_blank">Sea: Supervised embedding alignment for token-level visual-textual integration in mllms</a></div>
+          <div class="pub-authors">Y Yin, Y Zhao, Y Zhang, Y Zhang, <span class="highlight">K Lin</span>, J Wang, X Tao, P Wan, W Zhang, ...</div>
+          <div class="pub-venue">EMNLP 2025</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 12</span><span class="pub-year">2025</span></div>
+        </li>
+        <!-- 14 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:L8Ckcad2t8MC" target="_blank">Towards precise scaling laws for video diffusion transformers</a></div>
+          <div class="pub-authors">Y Yin, Y Zhao, M Zheng, <span class="highlight">K Lin</span>, J Ou, R Chen, VSJ Huang, J Wang, X Tao, ...</div>
+          <div class="pub-venue">CVPR 2025</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 12</span><span class="pub-year">2025</span></div>
+        </li>
+        <!-- 15 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:_FxGoFyzp5QC" target="_blank">Multi-modal feature fusion with feature attention for VATEX captioning challenge 2020</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, Z Gan, L Wang</div>
+          <div class="pub-venue">arXiv preprint arXiv:2006.03315</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 12</span><span class="pub-year">2020</span></div>
+        </li>
+        <!-- 16 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:IjCSPb-OGe4C" target="_blank">Time-frequency joint coding method for boosting information transfer rate in an SSVEP based BCI system</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, Y Wang, X Gao</div>
+          <div class="pub-venue">IEEE EMBC 2016</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 10</span><span class="pub-year">2016</span></div>
+        </li>
+        <!-- 17 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:u-x6o8ySG0sC" target="_blank">A robust gesture recognition algorithm based on surface EMG</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, C Wu, X Huang, Q Ding, X Gao</div>
+          <div class="pub-venue">ICACI 2015</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 9</span><span class="pub-year">2015</span></div>
+        </li>
+        <!-- 18 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:M3ejUd6NZC8C" target="_blank">Semi-supervised learning for video captioning</a></div>
+          <div class="pub-authors"><span class="highlight">K Lin</span>, Z Gan, L Wang</div>
+          <div class="pub-venue">Findings of EMNLP 2020</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 7</span><span class="pub-year">2020</span></div>
+        </li>
+        <!-- 19 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:QIV2ME_5wuYC" target="_blank">Image processing method and apparatus, electronic device and computer readable storage medium</a></div>
+          <div class="pub-authors">W Zhang, C Wang, J Wang, <span class="highlight">K Lin</span></div>
+          <div class="pub-venue">US Patent US 2022/0108542 A1</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 6</span><span class="pub-year">2022</span></div>
+        </li>
+        <!-- 20 -->
+        <li class="pub-item">
+          <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=8bQlmq4AAAAJ&citation_for_view=8bQlmq4AAAAJ:Se3iqnhoufwC" target="_blank">Action recognition method and device based on surface electromyography signal</a></div>
+          <div class="pub-authors">Q Ding, X Gao, <span class="highlight">K Lin</span></div>
+          <div class="pub-venue">US Patent App. 15/428,230</div>
+          <div class="pub-meta"><span class="pub-citations">Cited by 2</span><span class="pub-year">2017</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      &copy; 2026 Ke Lin. Built with &hearts;
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const tabs = document.querySelectorAll('.nav-tab');
+      const contents = {
+        home: document.getElementById('tab-home'),
+        publications: document.getElementById('tab-publications')
+      };
+
+      function switchTab(tabId) {
+        // update tab buttons
+        tabs.forEach(t => {
+          const isActive = t.dataset.tab === tabId;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive);
+        });
+        // update content panels
+        Object.entries(contents).forEach(([id, el]) => {
+          if (el) {
+            el.classList.toggle('active', id === tabId);
+          }
+        });
+        // update URL hash
+        history.replaceState(null, '', '#' + tabId);
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.dataset.tab;
+          if (tabId) switchTab(tabId);
+        });
+      });
+
+      // restore tab from hash / default to home
+      const hash = window.location.hash.replace('#', '');
+      if (hash && contents[hash]) {
+        switchTab(hash);
+      }
+    })();
+  </script>
+</body>
+</html>
