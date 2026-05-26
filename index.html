@@ -3,68 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>个人主页 | Portfolio</title>
+  <title>Ke Lin's Homepage</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="nav">
-    <a class="logo" href="#home">YOUR NAME</a>
+    <a class="logo" href="#home">Ke Lin's Homepage</a>
     <nav>
-      <a href="#about">关于</a>
-      <a href="#projects">项目</a>
-      <a href="#contact">联系</a>
+      <a href="#home">Home</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main id="home">
-    <section class="hero section">
-      <p class="kicker">PERSONAL PORTFOLIO</p>
-      <h1>极简、克制、专注体验</h1>
-      <p class="lead">你好，我是前端开发者，专注于构建清晰、可维护且具有审美质感的 Web 页面。</p>
-      <a class="btn" href="#projects">查看作品</a>
-    </section>
-
-    <section id="about" class="section split">
-      <h2>关于我</h2>
-      <div>
-        <p>具备从设计还原到交互实现的完整能力，偏好语义化结构、细节排版和自然动效。</p>
-        <ul>
-          <li>技术栈：HTML / CSS / JavaScript</li>
-          <li>方向：前端工程化、交互体验、性能优化</li>
-          <li>理念：简洁不是简单，而是删繁就简</li>
+  <main>
+    <section id="home" class="section hero">
+      <p class="kicker">HOME</p>
+      <h1>Ke Lin</h1>
+      <p class="lead">Machine Learning Researcher at Huawei, focusing on multi-modal learning and brain-computer interface related research.</p>
+      <div class="split timeline-wrap">
+        <h2>Education</h2>
+        <ul class="timeline">
+          <li>Ph.D. / Master / Bachelor 信息可在此补充完善</li>
+          <li>可按学校、专业、年份继续补充</li>
+        </ul>
+      </div>
+      <div class="split timeline-wrap">
+        <h2>Work Experience</h2>
+        <ul class="timeline">
+          <li>Huawei — Machine Learning Research</li>
+          <li>研究方向：Machine Learning、Brain-Computer Interface</li>
         </ul>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>精选项目</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>项目 A</h3>
-          <p>企业官网改版，强调信息层级与可读性，加载速度提升 40%。</p>
+    <section id="publications" class="section">
+      <h2>Publications</h2>
+      <p class="lead">以下内容参考 Google Scholar（user=8bQlmq4AAAAJ）。</p>
+      <div class="pub-list">
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=453528400036210097" target="_blank" rel="noopener noreferrer">Koala-36m: A large-scale video dataset improving consistency between fine-grained conditions and video content</a></h3>
+          <p>CVPR, 2025 · Citations: 104</p>
         </article>
-        <article class="card">
-          <h3>项目 B</h3>
-          <p>数据看板系统，构建组件化页面架构，减少重复开发成本。</p>
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=15570564094419925535" target="_blank" rel="noopener noreferrer">An online hybrid BCI system based on SSVEP and EMG</a></h3>
+          <p>Journal of Neural Engineering, 2016 · Citations: 88</p>
         </article>
-        <article class="card">
-          <h3>项目 C</h3>
-          <p>移动端活动页，优化首屏体验并提升转化率。</p>
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=11181064298383304344" target="_blank" rel="noopener noreferrer">A semantics-assisted video captioning model trained with scheduled sampling</a></h3>
+          <p>Frontiers in Robotics and AI, 2020 · Citations: 68</p>
+        </article>
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=11749577946908806995" target="_blank" rel="noopener noreferrer">A novel system of SSVEP-based human–robot coordination</a></h3>
+          <p>Journal of Neural Engineering, 2019 · Citations: 48</p>
+        </article>
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=5302099409120772707" target="_blank" rel="noopener noreferrer">Augmented partial mutual learning with frame masking for video captioning</a></h3>
+          <p>AAAI, 2021 · Citations: 33</p>
+        </article>
+        <article class="pub-item">
+          <h3><a href="https://scholar.google.com/scholar?oi=bibs&hl=zh-CN&cites=3745164467135937057" target="_blank" rel="noopener noreferrer">Boosting the information transfer rate of an SSVEP-BCI system using maximal-phase-locking value and minimal-distance spatial filter banks</a></h3>
+          <p>Tsinghua Science and Technology, 2019 · Citations: 26</p>
         </article>
       </div>
     </section>
 
     <section id="contact" class="section split">
-      <h2>联系我</h2>
+      <h2>Contact</h2>
       <div>
-        <p>欢迎合作与交流。</p>
-        <p>Email: hello@example.com</p>
-        <p>GitHub: github.com/yourname</p>
+        <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
       </div>
     </section>
   </main>
 
-  <footer class="footer">© 2026 YOUR NAME</footer>
+  <footer class="footer">© 2026 Ke Lin</footer>
   <script src="script.js"></script>
 </body>
 </html>
